@@ -17,19 +17,18 @@ Cart.prototype.saveToLocalStorage = function() {
   const cart = localStorage.setItem('cart', JSON.stringify(this.items));
 };
 
-Cart.prototype.removeItem = function(item) {
-  // TODO: Fill in this instance method to remove one item from the cart.
+Cart.prototype.removeItem = function(itemRow) {
+  let itemToRemove;
+  // DONE: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
-  console.log('item coming in to removeItem: ', item)
-  console.log("this.items before splice", this.items);
   for(let i = 0; i<this.items.length; i++) {
-    const itemToRemove = this.items.indexOf(item);
-    if(itemToRemove > -1) {
+    // if the current item in items array matches the item that came in from removeItemFromCart, set itemToRemove to that item
+    if(this.items[i].product === itemRow.children[2].innerHTML) {
+      itemToRemove = this.items[i];
       this.items.splice(itemToRemove, 1);
     }
-    console.log("this.items after splice", this.items);
-  }
   return this.items
+  }
 };
 
 const CartItem = function(product, quantity) {

@@ -28,26 +28,31 @@ function handleSubmit(event) {
   event.preventDefault();
   // Do all the things ...
   addSelectedItemToCart();
+  console.log('cart inside handleSubmit: ', cart);
   cart.saveToLocalStorage();
   updateCounter();
   updateCartPreview();
-
 }
 
 // DONE: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // DONE: suss out the item picked from the select list
   const selectedItem = document.getElementById('items').value;
-  const quantity = document.getElementById('quantity').value;
-  cart.addItem(selectedItem, quantity);
   // DONE: get the quantity
+  const quantity = document.getElementById('quantity').value;
   // DONE: using those, add one item to the Cart
+  cart.addItem(selectedItem, quantity);
 }
 
-// TODO*: Update the cart count in the header nav with the number of items in the Cart
+// DONE: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-  const itemCount = document.getElementById('itemCount');
-  itemCount.textContent = cart.items.length;
+  let itemCount = document.getElementById('itemCount');
+  let total = 0;
+  for(let i=0; i < cart.items.length; i++) {
+    let currentItemCount = parseInt(cart.items[i].quantity);
+    total = total + currentItemCount;
+  }
+  itemCount.textContent = ' (' + total + ')';
 }
 
 // DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
