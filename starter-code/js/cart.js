@@ -18,11 +18,13 @@ function renderCart() {
   showCart();
 }
 
-// TODO*: Remove all of the rows (tr) in the cart table (tbody)
+// DONE: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-  // const tableBodyElArray = document.getElementsByTagName('tbody');
-  // tableBodyElArray[0].innerHTML = '';
-  // tableBodyElArray[0].children.innerHTML = '';
+  const tableBodyElArray = document.getElementsByTagName('tbody');
+  // set <tbody> innerHTML to ''
+  tableBodyElArray[0].innerHTML = '';
+  // grab <tbody>'s children (<tr>s) and set their innerHTML to ''
+  tableBodyElArray[0].children.innerHTML = '';
 }
 
 // DONE: Fill in the <tr>'s under the <tbody> for each item in the cart
